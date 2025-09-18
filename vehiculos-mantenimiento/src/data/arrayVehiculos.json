@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "marca": "Toyota",
+    "modelo": "Corolla",
+    "patente": "ABC123",
+    "vencimientoPatente": "2025-10-01",
+    "vencimientoSeguro": "2025-09-30"
+  },
+  {
+    "id": 2,
+    "marca": "Honda",
+    "modelo": "Civic",
+    "patente": "XYZ789",
+    "vencimientoPatente": "2025-11-15",
+    "vencimientoSeguro": "2025-11-10"
+  }
+]
