@@ -1,9 +1,13 @@
 import type { Vehiculo } from '../interfaces/vehiculo';
-import { useEffect, useState } from 'react';
+//import { useEffect, useState } from 'react';
 
-function ListaVehiculos() {
+interface ListaVehiculosProps {
+  vehiculos: Vehiculo[];
+}
 
-  const [vehiculos, setVehiculos] = useState<Vehiculo[]>([]);
+function ListaVehiculos({vehiculos}: ListaVehiculosProps) {
+
+  /*const [vehiculos, setVehiculos] = useState<Vehiculo[]>([]);
 
   useEffect(() => {
     fetch('https://66bfd18b42533c4031472125.mockapi.io/api/vehiculos')
@@ -14,7 +18,7 @@ function ListaVehiculos() {
       .catch(error => {
         console.error('Error al traer vehículos:', error);
       });
-  }, []);
+  }, []);*/
 
 
   return (
