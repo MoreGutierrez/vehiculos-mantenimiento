@@ -27,12 +27,12 @@ export default function FormularioVehiculo({ agregarVehiculo }: VehiculoProps) {
     });
   };
 
-  //HANDLER DE ENVIO DE FORMULARIO CON VALIDACIONES
-  const handleSubmit = (e: React.FormEvent) => {
+  //HANDLER DE ENVIO DE FORMULARIO CON VALIDACIONES - POST A LA API
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     //VALIDACIONES
-    if (!editData.marca || !editData.modelo || !editData.patente || !editData.vencimientoPatente || !editData.vencimientoSeguro) {
+    if (!editData.marca.trim() || !editData.modelo.trim() || !editData.patente.trim() || !editData.vencimientoPatente.trim() || !editData.vencimientoSeguro.trim()) {
       setError("Todos los campos son obligatorios");
       return;
     }
@@ -42,46 +42,53 @@ export default function FormularioVehiculo({ agregarVehiculo }: VehiculoProps) {
       return;
     }
 
-    //LocalStorage
-    const vehiculosGuardados: Vehiculo[] = JSON.parse(localStorage.getItem("Vehiculos") || "[]");
 
-    //Validar que no exista la misma patente
-    const patenteExistente = vehiculosGuardados.find(v => v.patente === editData.patente);
-    if (patenteExistente) {
-      setError("Ya existe un vehículo con esta patente");
-      return;
+    //API
+    try {
+
+      //trae lso vehiculos para validar sus patentes y ver que no exista
+      const respuestaVehiculos = await fetch("https://66bfd18b42533c4031472125.mockapi.io/api/vehiculos");
+      const vehiculosExistentes: Vehiculo[] = await respuestaVehiculos.json();
+
+      const patenteExistente = vehiculosExistentes.find(vehiculo => vehiculo.patente === editData.patente);
+      if (patenteExistente) {
+        setError("Ya existe un vehiculo con esta patente");
+        return;
+      }
+
+      //si no existe hacemos un POST
+      const respuesta = await fetch('https://66bfd18b42533c4031472125.mockapi.io/api/vehiculos', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(editData)
+      });
+
+      if (!respuesta.ok) {
+        throw new Error("Error al guardar el vahiculo en la API")
+      }
+
+      const nuevoVehiculo: Vehiculo = await respuesta.json();
+      agregarVehiculo(nuevoVehiculo);
+
+      setEditData({
+        marca: "",
+        modelo: "",
+        patente: "",
+        vencimientoPatente: "",
+        vencimientoSeguro: ""
+      });
+
+      setError("");
+      setExito("Vehiculo agregado correctamente");
+      setTimeout(() => setExito(""), 3000);
+
+    } catch (error) {
+      console.error(error);
+      setError("Ocurrio un error al guardar el vehiculo");
     }
-
-    //Crear nuevo vehículo
-    const nuevoVehiculo: Vehiculo = {
-      id: Date.now(),
-      marca: editData.marca,
-      modelo: editData.modelo,
-      patente: editData.patente,
-      vencimientoPatente: editData.vencimientoPatente,
-      vencimientoSeguro: editData.vencimientoSeguro
-    };
-
-    //Guardar en LocalStorage
-    vehiculosGuardados.push(nuevoVehiculo);
-    localStorage.setItem("Vehiculos", JSON.stringify(vehiculosGuardados));
-
-    agregarVehiculo(nuevoVehiculo);
-
-    setEditData({
-      marca: "",
-      modelo: "",
-      patente: "",
-      vencimientoPatente: "",
-      vencimientoSeguro: ""
-    });
-
-    setError("");
-    setExito("Vehículo agregado correctamente");
-    setTimeout(() => setExito(""), 3000);
-  };
-
-
+  }
 
   return (
     <>
@@ -138,7 +145,7 @@ export default function FormularioVehiculo({ agregarVehiculo }: VehiculoProps) {
         <button type="submit">Agregar Vehículo</button>
 
 
-        //Mostrar mensajes de error o éxito
+        {/*Mostrar mensajes de error o éxito*/}
         {error && (
           <div className="message-sent" style={{ color: 'red', marginTop: '10px' }}>
             <h3>{error}</h3>
