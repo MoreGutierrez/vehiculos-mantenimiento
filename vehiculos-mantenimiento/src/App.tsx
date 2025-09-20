@@ -1,19 +1,16 @@
 
-import './App.css'
-import ListaVehiculos from './components/ListaVehiculos';
-
-
+import ListaVehiculos from "./components/ListaVehiculos.tsx";
 
 function App() {
+  
 
   return (
-    <>
-    <div className="container">
-      <h1>Administración de Mantenimiento de Vehículos</h1>
+    <div className="App">
+      <h1>Administración de Vehículos</h1>
+
       <ListaVehiculos />
     </div>
-    </>
-  )
+  );
 }
 
-export default App
+export default App;
