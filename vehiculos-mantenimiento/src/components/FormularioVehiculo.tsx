@@ -101,7 +101,7 @@ export default function FormularioVehiculo({ agregarVehiculo }: VehiculoProps) {
           placeholder="Ingresa la marca"
           value={editData.marca}
           onChange={handleChange}
-          required
+          
         />
 
         <label htmlFor='modelo'>Modelo del Vehículo:</label>
@@ -111,7 +111,7 @@ export default function FormularioVehiculo({ agregarVehiculo }: VehiculoProps) {
           placeholder="Ingresa el modelo"
           value={editData.modelo}
           onChange={handleChange}
-          required
+          
         />
 
         <label htmlFor='patente'>Patente del Vehículo:</label>
@@ -121,7 +121,7 @@ export default function FormularioVehiculo({ agregarVehiculo }: VehiculoProps) {
           placeholder="Ingresa la patente"
           value={editData.patente}
           onChange={handleChange}
-          required
+          
         />
 
         <label htmlFor='vencimientoPatente'>Vencimiento de Patente:</label>
@@ -130,7 +130,7 @@ export default function FormularioVehiculo({ agregarVehiculo }: VehiculoProps) {
           name='vencimientoPatente'
           value={editData.vencimientoPatente}
           onChange={handleChange}
-          required
+          
         />
 
         <label htmlFor='vencimientoSeguro'>Vencimiento de Seguro:</label>
@@ -139,7 +139,7 @@ export default function FormularioVehiculo({ agregarVehiculo }: VehiculoProps) {
           name='vencimientoSeguro'
           value={editData.vencimientoSeguro}
           onChange={handleChange}
-          required
+          
         />
 
         <button type="submit">Agregar Vehículo</button>
