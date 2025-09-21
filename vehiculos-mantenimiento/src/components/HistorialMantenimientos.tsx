@@ -40,7 +40,7 @@ function HistorialMantenimientos({ mantenimientos, vehiculos }: HistorialManteni
 
         {/*mensaje que sale si no hay mantenimientos*/}
         {vehiculoSeleccionado && mantenimientosFiltrados.length === 0 && (
-          <p style={{ color: 'orange', fontWeight: 'bold' }}>⚠️ No hay mantenimientos registrados para este vehiculo.</p>
+          <p style={{ color: 'orange', fontWeight: 'bold' }}>No hay mantenimientos registrados para este vehiculo.</p>
         )}
 
         {/*list de mantenimientos filtrados*/}

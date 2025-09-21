@@ -7,6 +7,10 @@ import FormularioMantenimiento from './components/FormularioMantenimiento';
 
 import HistorialMantenimientos from './components/HistorialMantenimientos';
 
+import VencimientosVehiculos from './components/VencimientoVehiculos';
+
+
+
 import type { Mantenimiento } from './interfaces/mantenimiento';
 import type { Vehiculo } from './interfaces/vehiculo';
 
@@ -23,7 +27,7 @@ function App() {
     fetch('https://66bfd18b42533c4031472125.mockapi.io/api/vehiculos')
       .then(res => res.json())
       .then((data: Vehiculo[]) => setVehiculos(data))
-      .catch(err => console.error('Error al traer vehículos:', err));
+      .catch(error => console.error('Error al traer vehículos:', error));
   }, []);
 
   //trae los m desde la API cuando levanta la pag
@@ -31,7 +35,7 @@ function App() {
     fetch("https://66bfd18b42533c4031472125.mockapi.io/api/mantenimientos")
       .then(res => res.json())
       .then((data: Mantenimiento[]) => setMantenimientos(data))
-      .catch(err => console.error('Error al traer mantenimientos:', err));
+      .catch(error => console.error('Error al traer mantenimientos:', error));
   }, []);
 
 
@@ -57,6 +61,8 @@ function App() {
       <FormularioVehiculo agregarVehiculo={agregarVehiculo} />
       <ListaVehiculos vehiculos={vehiculos} />
 
+      {/*VENCIMIENTOS*/}
+      <VencimientosVehiculos vehiculos={vehiculos} setVehiculos={setVehiculos} />
 
       {/*MANTENIMIENTOS*/}
       <FormularioMantenimiento
@@ -73,6 +79,8 @@ function App() {
         mantenimientos={mantenimientos}
         vehiculos={vehiculos}
       />
+
+
 
     </div>
   );
