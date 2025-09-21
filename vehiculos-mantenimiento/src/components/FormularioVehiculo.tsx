@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import type { Vehiculo } from '../interfaces/vehiculo';
 
-interface VehiculoProps {
+interface FormularioVehiculoProps {
   agregarVehiculo: (vehiculo: Vehiculo) => void;
 }
 
-export default function FormularioVehiculo({ agregarVehiculo }: VehiculoProps) {
+function FormularioVehiculo({ agregarVehiculo }: FormularioVehiculoProps) {
 
   const [editData, setEditData] = useState({ //guarda los datos del form
     marca: "",
@@ -19,7 +19,7 @@ export default function FormularioVehiculo({ agregarVehiculo }: VehiculoProps) {
   const [error, setError] = useState("");
   const [exito, setExito] = useState("");
 
-  //HANDLER DE CAMBIO actualiza los datos del usuario al escribir en los imputs
+  //HANDLER DE CAMBIO actualiza los datos del usuario al escribir en los inputs
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditData({
       ...editData,
@@ -66,7 +66,7 @@ export default function FormularioVehiculo({ agregarVehiculo }: VehiculoProps) {
       });
 
       if (!respuesta.ok) {
-        throw new Error("Error al guardar el vahiculo en la API")
+        throw new Error("Error al guardar el vahiculo")
       }
 
       const nuevoVehiculo: Vehiculo = await respuesta.json();
@@ -89,6 +89,7 @@ export default function FormularioVehiculo({ agregarVehiculo }: VehiculoProps) {
       setError("Ocurrio un error al guardar el vehiculo");
     }
   }
+
 
   return (
     <>
@@ -161,3 +162,6 @@ export default function FormularioVehiculo({ agregarVehiculo }: VehiculoProps) {
     </>
   );
 }
+
+
+export default FormularioVehiculo;

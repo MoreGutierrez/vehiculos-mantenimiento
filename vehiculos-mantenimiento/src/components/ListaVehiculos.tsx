@@ -30,7 +30,7 @@ function ListaVehiculos({vehiculos}: ListaVehiculosProps) {
           <p>No hay vehículos cargados</p>
         ) : (
           <ul className='lista-vehiculos'>
-            {vehiculos.map(vehiculo => (
+            {vehiculos.map((vehiculo) => (
               <li key={vehiculo.id}>
                 {vehiculo.marca} {vehiculo.modelo} - Patente: {vehiculo.patente} <br />
               {/*br es un salto de línea*/}
