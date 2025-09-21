@@ -4,8 +4,12 @@ import ListaMantenimientos from './components/ListaMantenimientos';
 
 import FormularioVehiculo from './components/FormularioVehiculo';
 import FormularioMantenimiento from './components/FormularioMantenimiento';
+
+import HistorialMantenimientos from './components/HistorialMantenimientos';
+
 import type { Mantenimiento } from './interfaces/mantenimiento';
 import type { Vehiculo } from './interfaces/vehiculo';
+
 import { useState, useEffect } from 'react';
 
 
@@ -59,6 +63,12 @@ function App() {
         agregarMantenimiento={agregarMantenimiento}
         vehiculos={vehiculos}
       />
+
+      <HistorialMantenimientos
+        mantenimientos={mantenimientos}
+        vehiculos={vehiculos}
+      />
+
       <ListaMantenimientos
         mantenimientos={mantenimientos}
         vehiculos={vehiculos}
