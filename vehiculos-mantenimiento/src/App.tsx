@@ -1,3 +1,4 @@
+import './App.css';
 
 import ListaVehiculos from './components/ListaVehiculos';
 import ListaMantenimientos from './components/ListaMantenimientos';
