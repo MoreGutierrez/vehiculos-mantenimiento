@@ -1,11 +1,13 @@
 import type { Vehiculo } from '../interfaces/vehiculo';
-//import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 interface ListaVehiculosProps {
   vehiculos: Vehiculo[];
 }
 
-function ListaVehiculos({vehiculos}: ListaVehiculosProps) {
+function ListaVehiculos({ vehiculos }: ListaVehiculosProps) {
+
+  const [mostrarVehiculos, setMostrarVehiculos] = useState(false);
 
   /*const [vehiculos, setVehiculos] = useState<Vehiculo[]>([]);
 
@@ -26,19 +28,26 @@ function ListaVehiculos({vehiculos}: ListaVehiculosProps) {
       <div className="list-container">
         <h2>Lista de Vehiculos</h2>
 
-        {vehiculos.length === 0 ? (
-          <p>No hay vehículos cargados</p>
-        ) : (
-          <ul className='lista-vehiculos'>
-            {vehiculos.map((vehiculo) => (
-              <li key={vehiculo.id}>
-                <strong>Vehiculo:</strong> {vehiculo.marca} {vehiculo.modelo} - <strong>Patente:</strong> {vehiculo.patente} <br />
-              {/*br es un salto de línea*/}
-                <strong>Vencimiento Patente:</strong> {vehiculo.vencimientoPatente} <br />
-                <strong>Vencimiento Seguro:</strong> {vehiculo.vencimientoSeguro}
-              </li>
-            ))}
-          </ul>
+        {/*btn para mostrar/ocultar lista de vehiculos*/}
+        <button onClick={() => setMostrarVehiculos(prev => !prev)}>
+          {mostrarVehiculos ? "Ocultar Vehículos" : "Mostrar Vehículos"}
+        </button>
+
+        {mostrarVehiculos && (
+          vehiculos.length === 0 ? (
+            <p>No hay vehículos cargados</p>
+          ) : (
+            <ul className='lista-vehiculos'>
+              {vehiculos.map((vehiculo) => (
+                <li key={vehiculo.id}>
+                  <strong>Vehiculo:</strong> {vehiculo.marca} {vehiculo.modelo} - <strong>Patente:</strong> {vehiculo.patente} <br />
+                  {/*br es un salto de línea*/}
+                  <strong>Vencimiento Patente:</strong> {vehiculo.vencimientoPatente} <br />
+                  <strong>Vencimiento Seguro:</strong> {vehiculo.vencimientoSeguro}
+                </li>
+              ))}
+            </ul>
+          )
         )}
       </div>
     </>
