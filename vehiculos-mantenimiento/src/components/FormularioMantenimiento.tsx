@@ -51,7 +51,7 @@ function FormularioMantenimiento({ agregarMantenimiento, vehiculos }: Formulario
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          vehiculoId: Number(formData.vehiculoId),
+          vehiculoId: formData.vehiculoId,
           tipo: formData.tipo,
           fecha: formData.fecha,
           costo: Number(formData.costo)

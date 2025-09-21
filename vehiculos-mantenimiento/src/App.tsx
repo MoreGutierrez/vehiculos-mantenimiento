@@ -22,6 +22,16 @@ function App() {
       .catch(err => console.error('Error al traer vehículos:', err));
   }, []);
 
+  //trae los m desde la API cuando levanta la pag
+  useEffect(() => {
+    fetch("https://66bfd18b42533c4031472125.mockapi.io/api/mantenimientos")
+      .then(res => res.json())
+      .then((data: Mantenimiento[]) => setMantenimientos(data))
+      .catch(err => console.error('Error al traer mantenimientos:', err));
+  }, []);
+
+
+
   //funcion para agregar un v al estado y a la lista
   const agregarVehiculo = (vehiculo: Vehiculo) => {
     setVehiculos(prev => [...prev, vehiculo]);
@@ -39,16 +49,20 @@ function App() {
     <div className="App">
       <h1>Administración de Vehículos</h1>
 
-      {/* Formularios */}
+      {/*VEHICULOS*/}
       <FormularioVehiculo agregarVehiculo={agregarVehiculo} />
+      <ListaVehiculos vehiculos={vehiculos} />
+
+
+      {/*MANTENIMIENTOS*/}
       <FormularioMantenimiento
         agregarMantenimiento={agregarMantenimiento}
         vehiculos={vehiculos}
       />
-
-      {/* Listas */}
-      <ListaVehiculos vehiculos={vehiculos} />
-      <ListaMantenimientos mantenimientos={mantenimientos} />
+      <ListaMantenimientos
+        mantenimientos={mantenimientos}
+        vehiculos={vehiculos}
+      />
 
     </div>
   );

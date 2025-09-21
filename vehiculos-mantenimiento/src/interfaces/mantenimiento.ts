@@ -1,7 +1,7 @@
 
 export interface Mantenimiento {
   id: number;
-  vehiculoId: number;
+  vehiculoId: string;
   tipo: string;
   fecha: string;
   costo: number;

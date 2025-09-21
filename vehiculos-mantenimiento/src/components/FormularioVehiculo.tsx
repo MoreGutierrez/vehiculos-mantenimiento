@@ -62,7 +62,13 @@ function FormularioVehiculo({ agregarVehiculo }: FormularioVehiculoProps) {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(editData)
+        body: JSON.stringify({
+          marca: editData.marca,
+          modelo: editData.modelo,
+          patente: editData.patente,
+          vencimientoPatente: editData.vencimientoPatente,
+          vencimientoSeguro: editData.vencimientoSeguro
+        })
       });
 
       if (!respuesta.ok) {

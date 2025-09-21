@@ -32,10 +32,10 @@ function ListaVehiculos({vehiculos}: ListaVehiculosProps) {
           <ul className='lista-vehiculos'>
             {vehiculos.map((vehiculo) => (
               <li key={vehiculo.id}>
-                {vehiculo.marca} {vehiculo.modelo} - Patente: {vehiculo.patente} <br />
+                <strong>Vehiculo:</strong> {vehiculo.marca} {vehiculo.modelo} - <strong>Patente:</strong> {vehiculo.patente} <br />
               {/*br es un salto de línea*/}
-                Vencimiento Patente: {vehiculo.vencimientoPatente} <br />
-                Vencimiento Seguro: {vehiculo.vencimientoSeguro}
+                <strong>Vencimiento Patente:</strong> {vehiculo.vencimientoPatente} <br />
+                <strong>Vencimiento Seguro:</strong> {vehiculo.vencimientoSeguro}
               </li>
             ))}
           </ul>
