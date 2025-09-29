@@ -104,7 +104,7 @@ function FormularioMantenimiento({ agregarMantenimiento, vehiculos }: Formulario
           ))}
         </select>
 
-        <label htmlFor='tipo'>Tipo de mantengitimiento:</label>
+        <label htmlFor='tipo'>Tipo de mantenimiento:</label>
         <input
           type='text'
           name='tipo'

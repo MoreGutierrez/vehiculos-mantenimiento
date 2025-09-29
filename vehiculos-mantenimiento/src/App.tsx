@@ -84,6 +84,8 @@ function App() {
       setVehiculos={setVehiculos}
       />
 
+      <h1>Administración de Mantenimientos</h1>
+
       {/*MANTENIMIENTOS*/}
       <FormularioMantenimiento
         agregarMantenimiento={agregarMantenimiento}
