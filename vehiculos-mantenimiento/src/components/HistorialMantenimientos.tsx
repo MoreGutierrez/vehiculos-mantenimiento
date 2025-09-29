@@ -21,7 +21,7 @@ function HistorialMantenimientos({ mantenimientos, vehiculos }: HistorialManteni
   return (
     <>
       <div className="historial-container">
-        <h2>Historial de Mantenimientos por Vehículo</h2>
+        <h2>Historial de Mantenimientos por Vehiculo</h2>
 
         {/*select de vehiculos*/}
         <label htmlFor='selectVehiculo'>Seleccione un Vehiculo:</label>
@@ -30,7 +30,7 @@ function HistorialMantenimientos({ mantenimientos, vehiculos }: HistorialManteni
           value={vehiculoSeleccionado}
           onChange={(e) => setVehiculoSeleccionado(e.target.value)}
         >
-          <option value="">Seleccione un vehículo - </option>
+          <option value="">Seleccione un vehiculo - </option>
           {vehiculos.map(v => (
             <option key={v.id} value={v.id}>
               {v.marca} {v.modelo} - {v.patente}
@@ -51,7 +51,7 @@ function HistorialMantenimientos({ mantenimientos, vehiculos }: HistorialManteni
 
               return (
                 <li key={mantenimiento.id}>
-                  <strong>Vehículo:</strong> {""}
+                  <strong>Vehiculo:</strong> {""}
                   {vehiculo ? (
                     <>
                       {vehiculo.marca} {vehiculo.modelo} - <strong>Patente:</strong> {vehiculo.patente}

@@ -10,8 +10,6 @@ import HistorialMantenimientos from './components/HistorialMantenimientos';
 
 import VencimientosVehiculos from './components/VencimientoVehiculos';
 
-
-
 import type { Mantenimiento } from './interfaces/mantenimiento';
 import type { Vehiculo } from './interfaces/vehiculo';
 
@@ -30,6 +28,21 @@ function App() {
       .then((data: Vehiculo[]) => setVehiculos(data))
       .catch(error => console.error('Error al traer vehículos:', error));
   }, []);
+
+  const handleDeleteVehiculo = async (id: string) => {
+    try {
+      await fetch(`https://66bfd18b42533c4031472125.mockapi.io/api/vehiculos/${id}`, {
+        method: "DELETE",
+      });
+
+      setVehiculos(prev => prev.filter(v => v.id !== id));
+      alert("Vehiculo eliminado correctamente");
+    } catch (error) {
+      console.error("Error al eliminar vehiculo:", error);
+      alert("No se pudo eliminar el vehiculo");
+    }
+  };
+
 
   //trae los m desde la API cuando levanta la pag
   useEffect(() => {
@@ -60,10 +73,16 @@ function App() {
 
       {/*VEHICULOS*/}
       <FormularioVehiculo agregarVehiculo={agregarVehiculo} />
-      <ListaVehiculos vehiculos={vehiculos} />
+      <ListaVehiculos
+        vehiculos={vehiculos}
+        eliminarVehiculo={handleDeleteVehiculo}
+      />
 
       {/*VENCIMIENTOS*/}
-      <VencimientosVehiculos vehiculos={vehiculos} setVehiculos={setVehiculos} />
+      <VencimientosVehiculos
+      vehiculos={vehiculos}
+      setVehiculos={setVehiculos}
+      />
 
       {/*MANTENIMIENTOS*/}
       <FormularioMantenimiento

@@ -101,7 +101,7 @@ function FormularioVehiculo({ agregarVehiculo }: FormularioVehiculoProps) {
     <>
       <form className='formulario-vehiculo' onSubmit={handleSubmit}>
 
-        <label htmlFor='marca'>Marca del Vehículo:</label>
+        <label htmlFor='marca'>Marca del Vehiculo:</label>
         <input
           type="text"
           name='marca'
@@ -111,7 +111,7 @@ function FormularioVehiculo({ agregarVehiculo }: FormularioVehiculoProps) {
           
         />
 
-        <label htmlFor='modelo'>Modelo del Vehículo:</label>
+        <label htmlFor='modelo'>Modelo del Vehiculo:</label>
         <input
           type="text"
           name='modelo'
@@ -121,7 +121,7 @@ function FormularioVehiculo({ agregarVehiculo }: FormularioVehiculoProps) {
           
         />
 
-        <label htmlFor='patente'>Patente del Vehículo:</label>
+        <label htmlFor='patente'>Patente del Vehiculo:</label>
         <input
           type="text"
           name='patente'
@@ -149,7 +149,7 @@ function FormularioVehiculo({ agregarVehiculo }: FormularioVehiculoProps) {
           
         />
 
-        <button type="submit">Agregar Vehículo</button>
+        <button type="submit">Agregar Vehiculo</button>
 
 
         {/*Mostrar mensajes de error o éxito*/}

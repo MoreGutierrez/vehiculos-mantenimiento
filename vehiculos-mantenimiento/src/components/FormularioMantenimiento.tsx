@@ -88,7 +88,7 @@ function FormularioMantenimiento({ agregarMantenimiento, vehiculos }: Formulario
     <>
       <form className='formulario-mantenimiento' onSubmit={handleSubmit}>
 
-        <label htmlFor='vehiculoId'>Vehículo:</label>
+        <label htmlFor='vehiculoId'>Vehiculo:</label>
         <select
           name='vehiculoId'
           value={formData.vehiculoId}
@@ -96,7 +96,7 @@ function FormularioMantenimiento({ agregarMantenimiento, vehiculos }: Formulario
           
         >
           {/*desplegable con los vehiculos para seleccionar*/}
-          <option value=''>Seleccione un vehículo</option>
+          <option value=''>Seleccione un vehiculo</option>
           {vehiculos.map(vehiculo => (
             <option key={vehiculo.id} value={vehiculo.id}>
               {vehiculo.marca} {vehiculo.modelo} - {vehiculo.patente}

@@ -3,56 +3,64 @@ import { useState } from 'react';
 
 interface ListaVehiculosProps {
   vehiculos: Vehiculo[];
+  eliminarVehiculo: (id: string) => void;
 }
 
-function ListaVehiculos({ vehiculos }: ListaVehiculosProps) {
-
+function ListaVehiculos({ vehiculos, eliminarVehiculo }: ListaVehiculosProps) {
   const [mostrarVehiculos, setMostrarVehiculos] = useState(false);
+  const [busqueda, setBusqueda] = useState("");
 
-  /*const [vehiculos, setVehiculos] = useState<Vehiculo[]>([]);
 
-  useEffect(() => {
-    fetch('https://66bfd18b42533c4031472125.mockapi.io/api/vehiculos')
-      .then(response => response.json())
-      .then((data: Vehiculo[]) => {
-        setVehiculos(data);
-      })
-      .catch(error => {
-        console.error('Error al traer vehículos:', error);
-      });
-  }, []);*/
+
+
+  //filtra los v segun marca, modelo o patente
+  const vehiculosFiltrados = vehiculos.filter((v) =>
+    v.marca.toLowerCase().includes(busqueda.toLowerCase()) ||
+    v.modelo.toLowerCase().includes(busqueda.toLowerCase()) ||
+    v.patente.toLowerCase().includes(busqueda.toLowerCase())
+  );
+
+
 
 
   return (
-    <>
-      <div className="list-container">
-        <h2>Lista de Vehiculos</h2>
+    <div className="list-container">
+      <h2>Lista de Vehículos</h2>
 
-        {/*btn para mostrar/ocultar lista de vehiculos*/}
-        <button onClick={() => setMostrarVehiculos(prev => !prev)}>
-          {mostrarVehiculos ? "Ocultar Vehículos" : "Mostrar Vehículos"}
-        </button>
+      {/*input para buscar*/}
+      <label>Buscar vehículo:</label>
+      <input
+        className='buscador'
+        type="text"
+        placeholder="Marca, Modelo o Patente"
+        value={busqueda}
+        onChange={(e) => setBusqueda(e.target.value)}
+      />
 
-        {mostrarVehiculos && (
-          vehiculos.length === 0 ? (
-            <p>No hay vehículos cargados</p>
-          ) : (
-            <ul className='lista-vehiculos'>
-              {vehiculos.map((vehiculo) => (
-                <li key={vehiculo.id}>
-                  <strong>Vehiculo:</strong> {vehiculo.marca} {vehiculo.modelo} - <strong>Patente:</strong> {vehiculo.patente} <br />
-                  {/*br es un salto de línea*/}
-                  <strong>Vencimiento Patente:</strong> {vehiculo.vencimientoPatente} <br />
-                  <strong>Vencimiento Seguro:</strong> {vehiculo.vencimientoSeguro}
-                </li>
-              ))}
-            </ul>
-          )
-        )}
-      </div>
-    </>
+      {/*btn mostrar/ocultar lista*/}
+      <button onClick={() => setMostrarVehiculos(prev => !prev)}>
+        {mostrarVehiculos ? "Ocultar Vehículos" : "Mostrar Vehículos"}
+      </button>
+
+      {mostrarVehiculos && (
+        vehiculosFiltrados.length === 0 ? (
+          <p>No hay vehículos cargados</p>
+        ) : (
+          <ul className='lista-vehiculos'>
+            {vehiculosFiltrados.map((vehiculo) => (
+              <li key={vehiculo.id}>
+                <strong>Vehículo:</strong> {vehiculo.marca} {vehiculo.modelo} - <strong>Patente:</strong> {vehiculo.patente} <br />
+                <strong>Vencimiento Patente:</strong> {vehiculo.vencimientoPatente} <br />
+                <strong>Vencimiento Seguro:</strong> {vehiculo.vencimientoSeguro} <br />
+                {/*btn para eliminar el v*/}
+                <button onClick={() => eliminarVehiculo(vehiculo.id)}>Eliminar</button>
+              </li>
+            ))}
+          </ul>
+        )
+      )}
+    </div>
   );
 }
 
 export default ListaVehiculos;
-

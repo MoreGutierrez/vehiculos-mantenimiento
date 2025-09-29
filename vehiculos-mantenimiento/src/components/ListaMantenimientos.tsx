@@ -35,7 +35,7 @@ function ListaMantenimientos({ mantenimientos, vehiculos }: ListaMantenimientosP
 
                 return (
                   <li key={mantenimiento.id}>
-                    <strong>Vehículo:</strong>{" "}
+                    <strong>Vehiculo:</strong>{" "}
                     {vehiculo ? (
                       <>
                         {vehiculo.marca} {vehiculo.modelo} - <strong>Patente:</strong> {vehiculo.patente}

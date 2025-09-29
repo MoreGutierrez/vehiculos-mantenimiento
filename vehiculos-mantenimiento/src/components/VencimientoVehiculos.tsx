@@ -106,7 +106,7 @@ function VencimientosVehiculos({ vehiculos, setVehiculos }: VencimientosVehiculo
   return (
     <>
       <div className="vencimientos-container">
-        <h2>Administración de Vencimientos</h2>
+        <h2>Administracion de Vencimientos</h2>
 
         <form onSubmit={handleSubmit}>
           <label>Vehículo:</label>
@@ -115,7 +115,7 @@ function VencimientosVehiculos({ vehiculos, setVehiculos }: VencimientosVehiculo
             value={formData.vehiculoId}
             onChange={handleChange}
           >
-            <option value="">Seleccione un vehículo</option>
+            <option value="">Seleccione un vehiculo</option>
             {vehiculos.map((v) => (
               <option key={v.id} value={v.id}>
                 {v.marca} {v.modelo} - {v.patente}
